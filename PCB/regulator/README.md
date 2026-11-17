@@ -75,6 +75,21 @@ and won't fit the footprint.
 | 3 | Nylon hex nut, M2: **Essentra 04M020040HN** | Mouser 144-04M020040HN, DigiKey RPC7084-ND. Under the board |
 | 4 | M3 screws and standoffs | To mount the board. Metal is fine: copper is kept clear of the holes |
 
+## Ordering
+
+Fab files are in [`production/`](production/), regenerated with `scripts/export_production.sh regulator`
+from the repository root:
+
+| File | Contents |
+|---|---|
+| [`production/jlcpcb/regulator-gerbers.zip`](production/jlcpcb/regulator-gerbers.zip) | Everything a fab needs to make the bare board: upload this |
+| [`production/gerbers/`](production/gerbers/) | The same files unzipped: Gerbers (X2, Protel extensions), PTH and NPTH Excellon drills, drill maps, job file |
+| [`production/bom/regulator-bom.csv`](production/bom/regulator-bom.csv) | Purchasing BOM with Mouser, DigiKey and LCSC numbers |
+| [`production/placement/regulator-pos.csv`](production/placement/regulator-pos.csv) | Placement file (mm), for an assembler |
+
+Board options: **55.5 x 46 mm, 2 layers, 1.6 mm FR-4, 1 oz copper, blue solder mask, white silkscreen**,
+any surface finish (HASL lead-free is fine). Every feature is far above standard fab minimums. All seven parts are through-hole; JLCPCB can assemble them (it has LCSC numbers for all three line items), but they are quick to hand-solder. The Pololu module and the spacer hardware are bought separately (see What to buy).
+
 ## Assembly
 
 1. Solder C1 with its `+` lead in the pad nearest the socket (the stripe on the can is `-`), then J6

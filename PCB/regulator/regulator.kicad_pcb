@@ -7,6 +7,12 @@
 		(legacy_teardrops no)
 	)
 	(paper "A4")
+	(title_block
+		(title "Regulator Board")
+		(date "2026-11-16")
+		(rev "1.0")
+		(company "PunderWorks")
+	)
 	(layers
 		(0 "F.Cu" signal)
 		(2 "B.Cu" signal)
@@ -23039,7 +23045,7 @@
 			(justify mirror)
 		)
 	)
-	(gr_text "POWER REGULATOR"
+	(gr_text "POWER REGULATOR v1.0"
 		(at 127.75 129 0)
 		(layer "B.SilkS")
 		(uuid "84449e79-ebd1-46d3-a300-f0df45befea2")
