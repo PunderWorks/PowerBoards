@@ -22602,26 +22602,15 @@
 		(uuid "2583d180-0d5f-40b2-b2c1-d5f84cd5e6e7")
 	)
 	(gr_rect
-		(start 151.8 118.6)
-		(end 153.4 120.2)
+		(start 150.6 110.5)
+		(end 154.4 130)
 		(stroke
 			(width 0.15)
 			(type default)
 		)
 		(fill no)
 		(layer "F.SilkS")
-		(uuid "f55f76a8-625f-4847-864e-9c3253f8abea")
-	)
-	(gr_rect
-		(start 151.8 127.6)
-		(end 153.4 129.199999)
-		(stroke
-			(width 0.15)
-			(type default)
-		)
-		(fill no)
-		(layer "F.SilkS")
-		(uuid "389e5a6c-4979-4234-9938-09f49624adc3")
+		(uuid "4fdd47d9-7a55-404c-a090-5ba111adf0d7")
 	)
 	(gr_rect
 		(start 100 100)
@@ -22694,21 +22683,10 @@
 			(justify left)
 		)
 	)
-	(gr_text "5V: D42V55F5"
-		(at 138.5 114 0)
+	(gr_text "ANY OUTPUT VERSION"
+		(at 137 113.55 0)
 		(layer "F.SilkS")
 		(uuid "fbb9da9d-b5a2-4f10-a671-422c417d74be")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
-	(gr_text "12V: D42V55F12"
-		(at 138.5 116.5 0)
-		(layer "F.SilkS")
-		(uuid "4d982274-35e9-4aee-afc6-aa29bdd6a915")
 		(effects
 			(font
 				(size 1 1)
@@ -22738,7 +22716,7 @@
 			)
 		)
 	)
-	(gr_text "OUT: 6A @5V / 5A @12V TOTAL"
+	(gr_text "OUT: 6A MAX TOTAL"
 		(at 148.6 123 90)
 		(layer "F.SilkS")
 		(uuid "0554de78-ff85-4a21-9fbf-e1e539ee9fbd")
@@ -22749,21 +22727,10 @@
 			)
 		)
 	)
-	(gr_text "12V"
-		(at 152.6 122.5 90)
+	(gr_text "VOUT"
+		(at 152.5 133.199999 90)
 		(layer "F.SilkS")
-		(uuid "59d99522-efb4-4a3e-8f78-cf4444c3a758")
-		(effects
-			(font
-				(size 1.1 1.1)
-				(thickness 0.165)
-			)
-		)
-	)
-	(gr_text "5V"
-		(at 152.6 131 90)
-		(layer "F.SilkS")
-		(uuid "44ab8fde-1bd6-421d-b42a-c4073f64d0f2")
+		(uuid "dc0bf7bb-f35b-4084-b266-67c79a291dd0")
 		(effects
 			(font
 				(size 1.1 1.1)
@@ -22892,7 +22859,7 @@
 			)
 		)
 	)
-	(gr_text "D42V55Fx  5V 6A / 12V 5A MAX TOTAL"
+	(gr_text "D42V55Fx  6A MAX TOTAL"
 		(at 127.75 130.8 0)
 		(layer "B.SilkS")
 		(uuid "ff53cf4c-c293-40a8-a137-29303cdde86c")
@@ -22915,6 +22882,18 @@
 			)
 			(justify mirror)
 		)
+	)
+	(barcode
+		(at 106 128.5 0)
+		(layer "B.SilkS")
+		(size 9.5 9.5)
+		(text "HTTPS://GITHUB.COM/PUNDERWORKS/POWERBOARDS")
+		(text_height 1)
+		(type qr)
+		(ecc_level L)
+		(hide yes)
+		(knockout no)
+		(uuid "0da35af2-af65-410b-a4eb-7a1f9f48267e")
 	)
 	(segment
 		(start 116 122.2)
