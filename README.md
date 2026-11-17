@@ -10,7 +10,7 @@ is the source of truth for the circuit; there are no KiCad schematics. The layou
 
 | Board | Folder | Purpose | Status |
 |---|---|---|---|
-| Regulator | [`PCB/regulator/`](PCB/regulator) | Plug-in Pololu D42V55Fx regulator (5 V or 12 V by module) feeding four WAGO 2601 outputs over V+ and GND planes; 9-32 V in, 6 A at 5 V or 5 A at 12 V | Design done, layout not started |
+| Regulator | [`PCB/regulator/`](PCB/regulator) | Plug-in Pololu D42V55Fx regulator (5 V or 12 V by module) feeding four WAGO 2601 outputs over V+ and GND planes; 9-32 V in, 6 A at 5 V or 5 A at 12 V | Design done, first-pass layout |
 | Distribution | [`PCB/distribution/`](PCB/distribution) | Six interchangeable power terminals (any one can be the input) over shared V+ and GND planes, WAGO 2601 lever terminals | Initial layout done |
 
 ## Repository layout
