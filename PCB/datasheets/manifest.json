@@ -1,4 +1,10 @@
 {
+  "POLOLU_D42V55Fx_dimensions": {
+    "fetched": "2026-11-16",
+    "file": "POLOLU_D42V55Fx_dimensions.pdf",
+    "sha256": "115ff5f3896b7440a0e7dc3f527f17eebabd29f1e7ebc737c6a60a0c6870cf5b",
+    "url": "https://www.pololu.com/file/0J2180/d42v55fx-step-down-voltage-regulators-dimensions.pdf"
+  },
   "Pololu_D42V55F12": {
     "fetched": "2026-11-16",
     "file": "Pololu_D42V55F12.html",

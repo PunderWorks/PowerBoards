@@ -46,8 +46,10 @@ see the dropout graph on the product page.
   PCB covers every output voltage. The D42V55Fx family was chosen over the D36V50Fx for its 60 V input
   (against 50 V), which leaves room above 32 V battery peaks and hot-plug spikes, and for holding more
   current near 32 V in. Its pins are a 2x6 grid on 0.1" pitch in the order EN/PG, VRP, VIN, GND, GND,
-  VOUT, with EN on the edge row and PG on the inner row. The D36V50Fx has the same order and should fit
-  the same socket, but that is from Pololu's pinout photos, not a dimensioned drawing.
+  VOUT, with EN on the edge row and PG on the inner row. The dimension drawing puts the edge row 1.27 mm
+  and the inner row 3.81 mm from the module edge, with the six positions centered (6.35 mm from each
+  end). The D36V50Fx has the same pin order and should fit the same socket, but that is from Pololu's
+  pinout photos; its standoff holes have not been checked against these.
 - **One input capacitor, no TVS.** With the module alone, simulated hot-plug at 32 V through 0.5-2 µH
   of battery lead peaks at up to 57 V at VIN, close to the 60 V limit. C_IN brings the worst case to 42 V.
   See `scripts/spice/regulator_hotplug_sim.py` (`--bare` for the module alone).
@@ -77,8 +79,15 @@ VRP and GND pins); VRP is a 1.0 mm trace from the socket to C1.
   VOUT at the top, which puts VIN facing J1 and VRP beside C1. The module body (25.4 mm square, outlined
   on the silkscreen with its pin names inside) extends right of the socket, over nothing but the planes.
 - **C1 right beside the VRP pins,** clear of the module outline (it is 11.5 mm tall).
-- **No M2 standoff holes for the module.** The socket holds it. Pololu publishes no dimensioned drawing
-  for the D42V55Fx's mounting holes, so adding them waits until a real module has been measured.
+- **M2 standoff holes for the module (H5-H7)**, at the positions in Pololu's
+  [dimension drawing](../datasheets/POLOLU_D42V55Fx_dimensions.pdf): Ø2.2 mm, 2.2 mm in from the
+  module's edges and 21.1 mm apart. Two are at the ends of the pin edge, one at the far corner on the
+  EN/PG side. Each has a 5.5 mm copper keep-out on both layers, so a metal standoff can't short the
+  VOUT or GND pour; nylon standoffs avoid the question entirely. The socket (8.51 mm tall, Samtec
+  drawing) plus the module's 2.54 mm header plastic puts the module's PCB about 11 mm above this one:
+  use **M2 x 11 mm** standoffs. The holes' courtyards are the standoff itself (4 mm hex, 2.3 mm
+  radius) instead of the library's 2.5 mm circle: H5 sits 2.2 mm from the pin edge, and a 4 mm hex
+  standoff there clears the socket body by 0.57 mm, but the generic courtyard overlapped the socket's.
 - **Four M3 corner holes** with 8 mm copper keep-outs on both layers, so metal screws and standoffs are
   safe, as on the distribution board.
 - **Silkscreen:** input range and wire size on the left strip, total output current and `5V`/`12V` tick
@@ -93,8 +102,7 @@ VRP and GND pins); VRP is a 1.0 mm trace from the socket to C1.
 - The D42V55Fx's reverse-voltage limit is not published. Pololu says only that VIN has reverse
   protection.
 - The module's input capacitance and protection circuit are not published. The simulation sweeps both.
-- The socket position relative to the module's outline and M2 mounting holes comes from photos.
-  Pololu publishes no dimensioned drawing for the D42V55Fx.
+- Whether a D36V50Fx fits (pin order from photos only; its mounting holes not checked).
 
 ## Bench checklist
 
@@ -102,8 +110,8 @@ VRP and GND pins); VRP is a 1.0 mm trace from the socket to C1.
   every terminal's pin 2 to J6 pads 7-10; C1 `+` to J6 pads 3-4. Confirm there is no short from VIN,
   VRP or VOUT to GND.
 - Check that a D42V55F5 and a D42V55F12 both seat fully in J6, with the body over the marked outline. If
-  a D36V50Fx is available, check that it seats too. Measure the module's M2 hole positions against
-  the socket, for standoff holes in a later revision.
+  a D36V50Fx is available, check that it seats too. Check that the module's holes line up with H5-H7,
+  and that M2 x 11 mm standoffs sit flush with the module seated fully in the socket.
 - Power up from a current-limited bench supply at 12 V and then 32 V, with no load. Check VOUT.
 - Hot-plug a charged battery (or a 32 V supply on a long lead) several times, scoping VIN at J6.
   Expect under about 45 V peak.
