@@ -3,10 +3,10 @@
 // WAGO 2601-1102 with pin 1 on V+ and pin 2 on GND.
 //
 // Whichever terminal is the input carries the sum of all the outputs. Keep the total within the
-// terminal's 10 A UL rating (17.5 A IEC); see parts.kdl.
+// terminal's 10 A UL rating (17.5 A IEC); see PCB/libraries/stackup/parts.kdl.
 //
 // The four M3 mounting holes are board-only footprints in the KiCad layout, not parts here.
-use "parts.kdl"
+use "../../libraries/stackup/parts.kdl"
 
 design distribution {
     place wago-2601-1102 "J1" note="Power terminal (input or output)"

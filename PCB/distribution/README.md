@@ -4,7 +4,20 @@ Six identical 2-pole terminals share a V+ plane (`VPWR`, top copper) and a groun
 bottom copper). Any terminal can be the input; the other five are outputs. There are no active or
 passive components.
 
-The electrical design is in [Stackup KDL](stackup/board.kdl). The KiCad PCB
+## Ratings
+
+| | |
+|---|---|
+| Current | **17.5 A total** through whichever terminal is the input, with 16 AWG wire (IEC/EN 60664-1 rating of the terminals). **10 A** if you need the UL/CSA rating. |
+| Wire | 26-16 AWG solid, 24-16 AWG fine-stranded. Strip 8-9 mm. Use 16 AWG for full current; thinner wire limits the current to what that wire can carry. |
+| Voltage | DC power distribution. The terminals are rated far above any battery system (160 V IEC, 300 V UL). |
+| Polarity | `+` and `-` are printed behind every terminal. Any terminal can be the input. |
+| Mounting | Four M3 holes. Screws and standoffs may be metal: copper is kept clear of every hole. |
+
+The input terminal carries the sum of every output's current, so the 17.5 A limit applies to the total,
+not to each output.
+
+The electrical design is in [Stackup KDL](stackup/board.kdl), using the shared [parts file](../libraries/stackup/parts.kdl). The KiCad PCB
 (`distribution.kicad_pcb`) is linked to it through `distribution.stackup_sch`; sync it with the Stackup
 KiCad plugin. Run `stackup check PCB/distribution/stackup/board.kdl` from the repository root
 before syncing.
@@ -36,7 +49,11 @@ The 2601-3102 is the vertical, top-entry version of the same block; it is not a 
 ## Design decisions
 
 - **Current limit is the input terminal.** Whichever terminal is used as the input carries the sum of
-  all the outputs. The design limit is 10 A total, the terminal's UL rating, with 16 AWG wire.
+  all the outputs. The board is rated to the terminals' 17.5 A IEC/EN 60664-1 rating, which assumes
+  16 AWG (1.5 mm²), the largest wire they take. Their 10 A UL/CSA rating is given for anyone who needs
+  it. The overvoltage categories in the WAGO ratings table apply to the voltage ratings, not the current.
+- **Ratings on the silkscreen.** The side strips read "17.5A MAX TOTAL / 16 AWG" and "WIRE 26-16 AWG /
+  STRIP 8-9mm", and the back carries the IEC and UL figures.
 - **No input or output labels.** Any terminal can be the input, so the silkscreen marks only `+` and `-`.
 - **3 x 2 grid, rows back to back.** J1-J3 form the top row, rotated 180° so their wires enter from
   the top edge. J4-J6 form the bottom row, with wires entering from the
@@ -53,8 +70,8 @@ The 2601-3102 is the vertical, top-entry version of the same block; it is not a 
 - **Copper keep-out around each hole.** An 8 mm diameter rule area on both copper layers keeps the V+ and
   GND planes away from the screw head and standoff. Otherwise a metal screw would sit on V+ copper on
   top and GND on the bottom with only solder mask between them.
-- **Planes, not traces.** At 10 A, IPC-2221 needs about 7.2 mm of 1 oz outer copper for a 10 °C rise.
-  Each plane spans the whole 45.5 x 37 mm board. Pads join their plane through thermal reliefs with
+- **Planes, not traces.** At 17.5 A, IPC-2221 needs about 15.7 mm of 1 oz outer copper for a 10 °C
+  rise (7.2 mm at 10 A). Each plane spans the whole 45.5 x 37 mm board. Pads join their plane through thermal reliefs with
   1.0 mm spokes; with two solder pins per pole, that is 8 spokes (8 mm of copper) per pole.
 
 ## Bench checklist

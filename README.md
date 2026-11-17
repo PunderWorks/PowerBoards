@@ -19,11 +19,12 @@ is the source of truth for the circuit; there are no KiCad schematics. The layou
 |---|---|
 | [`manifest.kdl`](manifest.kdl) | Stackup version and the parts library, pinned by commit. Shared by every board |
 | `PCB/<board>/` | One folder per board: its KiCad project (`<board>.kicad_pro`, `.kicad_pcb`, `.stackup_sch`) and the folders below |
-| `PCB/<board>/stackup/` | `board.kdl` (circuit), `parts.kdl` (board-specific parts), `purchasing.kdl` (manufacturer and supplier choices) |
+| `PCB/<board>/stackup/` | `board.kdl`, the board's circuit |
+| [`PCB/libraries/stackup/`](PCB/libraries/stackup) | `parts.kdl`, the Stackup parts shared by every board |
 | `PCB/<board>/diagrams/` | Layout floorplans for circuits with real layout stakes (switching loops, thermal pads, high-current paths) |
 | `PCB/<board>/analysis/` | Generated analysis output. Only `manifest.json` is committed |
 | `PCB/<board>/production/` | Fab outputs: `bom/`, `gerbers/`, `jlcpcb/`, `placement/` |
-| [`PCB/libraries/`](PCB/libraries) | KiCad symbols, footprints and 3D models shared by all boards |
+| [`PCB/libraries/`](PCB/libraries) | KiCad footprints (`PowerBoards.pretty`) and 3D models shared by all boards |
 | [`PCB/datasheets/`](PCB/datasheets) | Manufacturer datasheets for the parts used, shared by all boards |
 | [`scripts/spice/`](scripts/spice) | ngspice simulations of the power, enable and protection circuits |
 | [`graphics/`](graphics) | Logos and images |

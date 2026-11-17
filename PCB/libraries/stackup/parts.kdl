@@ -1,3 +1,6 @@
+// Parts shared by the PowerBoards designs. Datasheets are in PCB/datasheets/ unless a part's
+// comment says its datasheet could not be fetched.
+
 // WAGO 2601-1102 PCB terminal block: lever-actuated Push-in CAGE CLAMP, 2-pole, 3.5 mm pitch,
 // wire entry parallel to the PCB (conductor connection direction to PCB 0°). The 2601-3102 is the
 // vertical, top-entry version and is not a substitute.
