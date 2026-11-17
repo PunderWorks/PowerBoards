@@ -70,8 +70,9 @@ and won't fit the footprint.
 | Qty | Item | Notes |
 |---|---|---|
 | 1 | Pololu D42V55Fx regulator | [pololu.com/category/354](https://www.pololu.com/category/354). D42V55F5 (#5571) for 5 V, D42V55F12 (#5577) for 12 V, or another version. Comes with the male headers it plugs in on |
-| 3 | M2 x 11 mm hex standoff, female-female, 4 mm across flats | Optional, holds the module down (recommended in a moving droid). Nylon avoids any chance of a short |
-| 6 | M2 x 4 mm screw | For the standoffs: three through the module, three from under the board |
+| 3 | Round nylon spacer, #2/M2, 3/16" (4.76 mm) OD x 7/16" (11.13 mm), unthreaded: **Bivar 9913-437** | Mouser 749-9913-437, DigiKey 492-1047-ND. Optional but recommended in a moving droid: holds the module down |
+| 3 | Nylon pan head screw, M2 x 16 mm, Phillips: **Essentra 50M020040P016** | DigiKey 145-50M020040P016-ND (Mouser 144-50M020040P016). Goes down through the module, the spacer and the board. M2 x 20 (50M020040P020) also works, with more thread below the nut |
+| 3 | Nylon hex nut, M2: **Essentra 04M020040HN** | Mouser 144-04M020040HN, DigiKey RPC7084-ND. Under the board |
 | 4 | M3 screws and standoffs | To mount the board. Metal is fine: copper is kept clear of the holes |
 
 ## Assembly
@@ -82,8 +83,10 @@ and won't fit the footprint.
    jig: plug the headers into J6, sit the module on them, and solder from the top.
 3. Before plugging the module in, check there is no short from VIN, VRP or VOUT to GND, and power
    the board from a current-limited supply to check J1 reaches J6.
-4. Plug the module in, with its body over the outline on the silkscreen, and fit the standoffs if
-   used. Write the output voltage in the `VOUT` box.
+4. Stand a spacer over each of the three M2 holes (H5-H7), then plug the module in on top, with its
+   body over the outline on the silkscreen and its holes over the spacers. Push an M2 x 16 nylon
+   screw down through each module hole, spacer and board, and fit a nylon nut underneath. Snug the
+   nuts by hand; don't pull the module down harder than the socket seats it. Write the output voltage in the `VOUT` box.
 5. Wire the battery to J1 (`IN`) and the loads to J2-J5. The bench checklist below has the first
    power-up checks.
 
@@ -131,15 +134,18 @@ VRP and GND pins); VRP is a 1.0 mm trace from the socket to C1.
   VOUT at the top, which puts VIN facing J1 and VRP beside C1. The module body (25.4 mm square, outlined
   on the silkscreen with its pin names inside) extends right of the socket, over nothing but the planes.
 - **C1 right beside the VRP pins,** clear of the module outline (it is 11.5 mm tall).
-- **M2 standoff holes for the module (H5-H7)**, at the positions in Pololu's
+- **M2 holes for holding the module down (H5-H7)**, at the positions in Pololu's
   [dimension drawing](../datasheets/POLOLU_D42V55Fx_dimensions.pdf): Ø2.2 mm, 2.2 mm in from the
   module's edges and 21.1 mm apart. Two are at the ends of the pin edge, one at the far corner on the
-  EN/PG side. Each has a 5.5 mm copper keep-out on both layers, so a metal standoff can't short the
-  VOUT or GND pour; nylon standoffs avoid the question entirely. The socket (8.51 mm tall, Samtec
-  drawing) plus the module's 2.54 mm header plastic puts the module's PCB about 11 mm above this one:
-  use **M2 x 11 mm** standoffs. The holes' courtyards are the standoff itself (4 mm hex, 2.3 mm
-  radius) instead of the library's 2.5 mm circle: H5 sits 2.2 mm from the pin edge, and a 4 mm hex
-  standoff there clears the socket body by 0.57 mm, but the generic courtyard overlapped the socket's.
+  EN/PG side. Each has a 5.5 mm copper keep-out on both layers. The socket (8.51 mm tall, Samtec
+  drawing) plus the module's 2.54 mm header plastic puts the module's PCB 11.05 mm above this one, so
+  the module is held by a 7/16" (11.13 mm) round nylon spacer (Bivar 9913-437) on an M2 x 16 nylon
+  screw and nut. All-nylon hardware can't short anything. There is no stocked nylon M2 x 11 mm
+  female-female hex standoff, and a round spacer has no corners to orient: H5 sits 2.2 mm from the pin
+  edge, and the 4.76 mm spacer there clears the socket body (15.75 mm long, Samtec drawing) by
+  0.24 mm. The holes' courtyards are the spacer (2.4 mm radius), which reaches into the socket
+  courtyard's 0.5 mm margin at H5; a custom DRC rule in `regulator.kicad_dru` allows exactly that pair,
+  with the reason.
 - **Four M3 corner holes** with 8 mm copper keep-outs on both layers, so metal screws and standoffs are
   safe, as on the distribution board.
 - **Silkscreen:** input range and wire size on the left strip. On the right strip, "OUT: 6A MAX TOTAL"
@@ -176,7 +182,7 @@ VRP and GND pins); VRP is a 1.0 mm trace from the socket to C1.
   VRP or VOUT to GND.
 - Check that a D42V55F5 and a D42V55F12 both seat fully in J6, with the body over the marked outline. If
   a D36V50Fx is available, check that it seats too. Check that the module's holes line up with H5-H7,
-  and that M2 x 11 mm standoffs sit flush with the module seated fully in the socket.
+  and that the 11.13 mm spacers sit between the boards without lifting the module out of the socket.
 - Power up from a current-limited bench supply at 12 V and then 32 V, with no load. Check VOUT.
 - Hot-plug a charged battery (or a 32 V supply on a long lead) several times, scoping VIN at J6.
   Expect under about 45 V peak.
