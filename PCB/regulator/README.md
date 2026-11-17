@@ -3,13 +3,30 @@
 A power distribution board with a plug-in step-down regulator. One WAGO terminal takes the battery and
 feeds a Pololu D42V55Fx module plugged into a socket in the middle of the board; the module's output
 feeds a V+ plane shared by four more WAGO terminals, over a GND plane. The output voltage is whichever
-module is plugged in: **D42V55F5 for 5 V, D42V55F12 for 12 V**. Swapping the module changes the board's
-output; nothing else on the board changes.
+module is plugged in: **D42V55F5 for 5 V, D42V55F12 for 12 V**, or any other D42V55Fx version.
+Swapping the module changes the board's output; nothing else on the board changes.
 
-The electrical design is in [Stackup KDL](stackup/board.kdl), using the shared
-[parts file](../libraries/stackup/parts.kdl). The KiCad PCB (`regulator.kicad_pcb`) is linked to it
-through `regulator.stackup_sch`; sync it with the Stackup KiCad plugin. Run
-`stackup check PCB/regulator/stackup/board.kdl --locked` from the repository root before syncing.
+<p align="center">
+  <img src="assets/regulator-front.png" alt="Regulator board, front: the battery input terminal at the top left, the 2x6 module socket and input capacitor in the middle, four output terminals along the bottom, and a VOUT write-in box on the right" width="49%">
+  <img src="assets/regulator-back.png" alt="Regulator board, back: the PunderWorks logo, the board title and rating, and a QR code to this repository" width="49%">
+</p>
+<p align="center">
+  <img src="assets/regulator-angle.png" alt="Regulator board at an angle, showing the lever terminals, the module socket and the input capacitor" width="70%">
+</p>
+
+## Features
+
+- **Battery in, regulated power out to four terminals.** 9-32 V in (24 V batteries up to 32 V
+  peak, or 12 V systems with the 5 V module), up to 6 A out in total.
+- **Plug-in regulator.** The Pololu module sits in a socket on its own headers, so one board covers
+  every output voltage, and a module can be swapped without desoldering anything.
+- **Tool-free wiring.** WAGO 2601 lever terminals take 26-16 AWG wire; strip 8-9 mm and push it in.
+- **Protected input.** The module has reverse-polarity, over-current and over-temperature
+  protection. An input capacitor on the board damps the voltage spike when a charged battery is
+  plugged in (simulated: 42 V worst case instead of 57 V, against the module's 60 V limit).
+- **Label it.** A blank `VOUT` box on the silkscreen for the voltage of the module fitted, `+`/`-`
+  behind every terminal, and the ratings printed on both sides.
+- **All through-hole.** Seven parts plus the module, easy to hand-solder.
 
 ## Ratings
 
@@ -22,24 +39,58 @@ through `regulator.stackup_sch`; sync it with the Stackup KiCad plugin. Run
 | Wire | 26-16 AWG, strip 8-9 mm (WAGO 2601) | Same |
 
 Other D42V55Fx output versions fit the same socket; the board limit is still 6 A, and the module's own
-limit comes from Pololu's graph. The four outputs share the total; it is not per output. Input current is far lower than the output
-current: about 2.8 A at 24 V in for 12 V x 5 A out. The terminals (17.5 A IEC) are nowhere near their
-limit.
+limit comes from Pololu's graph. The four outputs share the total; it is not per output. Input current
+is far lower than the output current: about 2.8 A at 24 V in for 12 V x 5 A out. The terminals
+(17.5 A IEC) are nowhere near their limit.
 
 Module currents are from Pololu's "maximum continuous output current" graph on the
 [product page](../datasheets/Pololu_D42V55F5.html) (room temperature, still air, no heat sinking).
 The 9 V and 14 V input minimums are a working allowance for dropout at full load, not Pololu figures;
 see the dropout graph on the product page.
 
-## Parts
+## What to buy
 
-| Ref | Function | Part | Notes |
-|---|---|---|---|
-| J1 (`J_IN`) | Battery input | WAGO 2601-1102 | Pin 1 VIN, pin 2 GND |
-| J2-J5 (`J_OUT1-4`) | Regulated outputs | WAGO 2601-1102 | Pin 1 VOUT, pin 2 GND |
-| J6 (`J_REG`) | Regulator socket | Samtec SSW-106-01-T-D, 2x6 female, 2.54 mm | 4.7 A per contact. Second source Sullins PPTC062LFBN-RC |
-| C1 (`C_IN`) | Input bulk, on VRP | Rubycon 63ZLJ100M8X11.5, 100 µF 63 V | Damps hot-plug ringing |
-| — | Regulator module | Pololu D42V55F5 (#5571) or D42V55F12 (#5577) | Bought separately, plugs into J6 on its supplied male headers |
+### Board parts
+
+The purchasing BOM is [`production/bom/regulator-bom.csv`](production/bom/regulator-bom.csv),
+exported from the Stackup design (`stackup bom PCB/regulator/stackup/board.kdl --locked`).
+
+| Qty | Ref | Part | Manufacturer / MPN | Mouser | DigiKey | LCSC |
+|---|---|---|---|---|---|---|
+| 5 | J1-J5 | Lever terminal, 2-pole, 3.5 mm, horizontal entry | WAGO 2601-1102 | 1089-2601-1102 | 2946-2601-1102-ND | C7509568 |
+| 1 | J6 | Module socket: female header 2x6, 2.54 mm, through-hole | Samtec SSW-106-01-T-D | 200-SSW10601TD | 612-SSW-106-01-T-D-ND | C3323806 |
+| 1 | C1 | Electrolytic capacitor, 100 µF 63 V, radial 8 x 11.5 mm, 3.5 mm lead spacing | Rubycon 63ZLJ100M8X11.5 | 232-63ZLJ100M8X11.5 | 1189-63ZLJ100M8X11.5-ND | C694359 |
+
+Substitutes: Sullins PPTC062LFBN-RC for J6. For C1, any low-impedance 100 µF 63 V (or higher)
+105 °C electrolytic that is 8 mm in diameter with 3.5 mm lead spacing; a 10 mm can has 5 mm spacing
+and won't fit the footprint.
+
+### Not on the board
+
+| Qty | Item | Notes |
+|---|---|---|
+| 1 | Pololu D42V55Fx regulator | [pololu.com/category/354](https://www.pololu.com/category/354). D42V55F5 (#5571) for 5 V, D42V55F12 (#5577) for 12 V, or another version. Comes with the male headers it plugs in on |
+| 3 | M2 x 11 mm hex standoff, female-female, 4 mm across flats | Optional, holds the module down (recommended in a moving droid). Nylon avoids any chance of a short |
+| 6 | M2 x 4 mm screw | For the standoffs: three through the module, three from under the board |
+| 4 | M3 screws and standoffs | To mount the board. Metal is fine: copper is kept clear of the holes |
+
+## Assembly
+
+1. Solder C1 with its `+` lead in the pad nearest the socket (the stripe on the can is `-`), then J6
+   and the five WAGO terminals. Keep the socket square to the board so the module sits level.
+2. Solder the module's supplied male headers to the module (long pins down), using the socket as a
+   jig: plug the headers into J6, sit the module on them, and solder from the top.
+3. Before plugging the module in, check there is no short from VIN, VRP or VOUT to GND, and power
+   the board from a current-limited supply to check J1 reaches J6.
+4. Plug the module in, with its body over the outline on the silkscreen, and fit the standoffs if
+   used. Write the output voltage in the `VOUT` box.
+5. Wire the battery to J1 (`IN`) and the loads to J2-J5. The bench checklist below has the first
+   power-up checks.
+
+The electrical design is in [Stackup KDL](stackup/board.kdl), using the shared
+[parts file](../libraries/stackup/parts.kdl). The KiCad PCB (`regulator.kicad_pcb`) is linked to it
+through `regulator.stackup_sch`; sync it with the Stackup KiCad plugin. Run
+`stackup check PCB/regulator/stackup/board.kdl --locked` from the repository root before syncing.
 
 ## Design decisions
 

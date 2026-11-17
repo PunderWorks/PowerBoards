@@ -2,7 +2,25 @@
 
 Six identical 2-pole terminals share a V+ plane (`VPWR`, top copper) and a ground plane (`GND`,
 bottom copper). Any terminal can be the input; the other five are outputs. There are no active or
-passive components.
+passive components. For a long, narrow version with five terminals in one row, see the
+[inline distribution board](../distribution-inline/README.md).
+
+<p align="center">
+  <img src="assets/distribution-front.png" alt="Distribution board, front: six lever terminals in two rows of three, wires entering from the top and bottom edges, with ratings on the side strips" width="49%">
+  <img src="assets/distribution-back.png" alt="Distribution board, back: the PunderWorks logo, the board title and the IEC and UL ratings" width="49%">
+</p>
+<p align="center">
+  <img src="assets/distribution-angle.png" alt="Distribution board at an angle, showing the two rows of lever terminals" width="70%">
+</p>
+
+## Features
+
+- **One in, five out, any way round.** Every terminal is the same, so any one can be the input.
+- **17.5 A total** through solid copper planes on both layers, with 16 AWG wire.
+- **Tool-free wiring.** WAGO 2601 lever terminals take 26-16 AWG wire; strip 8-9 mm and push it in.
+- **Compact.** 45.5 x 37 mm, with the wires leaving from two opposite edges.
+- **Safe to mount with metal hardware.** Four M3 holes with copper kept clear of each.
+- **Six parts, all through-hole.**
 
 ## Ratings
 
@@ -21,6 +39,26 @@ The electrical design is in [Stackup KDL](stackup/board.kdl), using the shared [
 (`distribution.kicad_pcb`) is linked to it through `distribution.stackup_sch`; sync it with the Stackup
 KiCad plugin. Run `stackup check PCB/distribution/stackup/board.kdl` from the repository root
 before syncing.
+
+## What to buy
+
+The purchasing BOM is [`production/bom/distribution-bom.csv`](production/bom/distribution-bom.csv), exported from
+the Stackup design (`stackup bom PCB/distribution/stackup/board.kdl --locked`).
+
+| Qty | Ref | Part | Manufacturer / MPN | Mouser | DigiKey | LCSC |
+|---|---|---|---|---|---|---|
+| 6 | J1-J6 | Lever terminal, 2-pole, 3.5 mm, horizontal entry | WAGO 2601-1102 | 1089-2601-1102 | 2946-2601-1102-ND | C7509568 |
+| 4 | — | M3 screws and standoffs to mount the board (not on the BOM) | Any; metal is fine, copper is kept clear of the holes | | | |
+
+The 2601-3102 is the vertical, top-entry version of the same block; it is not a substitute.
+
+## Assembly
+
+1. Fit the 6 terminals with their wire entries at the board edge and solder both pins of each pole.
+   The pins carry the full current, so make them full, shiny fillets.
+2. Check continuity between all 6 `+` pins and between all 6 `-` pins, and that `+` and `-` are
+   not shorted.
+3. Wire the supply to any one terminal and the loads to the others, keeping the total within the rating.
 
 ## Hardware overview
 

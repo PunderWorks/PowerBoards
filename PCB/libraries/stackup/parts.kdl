@@ -27,7 +27,7 @@ part wago-2601-1102 {
     pin 2 passive
 
     package horizontal footprint="PowerBoards:WAGO_2601-1102_Horizontal" {
-        order mpn="2601-1102" lcsc=C7509568
+        order mpn="2601-1102" lcsc=C7509568 mouser="1089-2601-1102" digikey="2946-2601-1102-ND"
         pad 1 1
         pad 2 2
     }
@@ -80,7 +80,7 @@ part d42v55fx-socket {
     pin VOUT_B power_out
 
     package vertical footprint="Connector_PinSocket_2.54mm:PinSocket_2x06_P2.54mm_Vertical" {
-        order mpn="SSW-106-01-T-D" lcsc=C3323806
+        order mpn="SSW-106-01-T-D" lcsc=C3323806 mouser="200-SSW10601TD" digikey="612-SSW-106-01-T-D-ND"
         pad EN 1
         pad PG 2
         pad VRP_A 3
@@ -106,11 +106,11 @@ part d42v55fx-socket {
 // 3.5 mm lead spacing. Datasheet: Rubycon ZLJ (PCB/datasheets/Rubycon_ZLJ.pdf): 63 V 100 µF
 // 8x11.5 row, ripple 1000 mA rms (105 °C, 100 kHz), impedance 0.13 Ω max (20 °C, 100 kHz),
 // 0.39 Ω max (-10 °C) (p. 3); lead spacing F = 3.5 mm for φ8 (p. 2). Pad 1 is positive in KiCad's
-// CP_Radial footprints. Second source: Nichicon UPW1J101MPD (φ10, not checked).
+// CP_Radial footprints. A substitute must be φ8 with 3.5 mm spacing (φ10 cans have 5 mm spacing).
 part cap-63zlj100 {
     symbol "Device:C_Polarized"
     reference C
-    value "100µF 63V"
+    value "100µF 63V radial 8x11.5mm"
     description "Aluminium electrolytic, 100 µF, 63 V, 20%, low impedance, 105 °C, radial φ8 x 11.5 mm, P3.5 mm"
     datasheet "https://www.rubycon.co.jp/en/catalog/e_pdfs/aluminum/e_ZLJ.pdf"
     manufacturer Rubycon
@@ -119,7 +119,7 @@ part cap-63zlj100 {
     pin NEG passive
 
     package radial8 footprint="Capacitor_THT:CP_Radial_D8.0mm_P3.50mm" {
-        order mpn="63ZLJ100M8X11.5" lcsc=C694359
+        order mpn="63ZLJ100M8X11.5" lcsc=C694359 mouser="232-63ZLJ100M8X11.5" digikey="1189-63ZLJ100M8X11.5-ND"
         pad POS 1
         pad NEG 2
     }

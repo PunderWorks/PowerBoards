@@ -8,6 +8,23 @@ This is the [distribution board](../distribution/README.md) laid out in one row 
 for where a long, narrow board fits better. The terminal, ratings and design decisions are the same;
 only the layout differs, and that is described here.
 
+<p align="center">
+  <img src="assets/distribution-inline-front.png" alt="Inline distribution board, front: five lever terminals in a row, wires entering from the bottom edge, with the ratings along the top" width="49%">
+  <img src="assets/distribution-inline-back.png" alt="Inline distribution board, back: the PunderWorks logo beside the board title and the IEC and UL ratings" width="49%">
+</p>
+<p align="center">
+  <img src="assets/distribution-inline-angle.png" alt="Inline distribution board at an angle, showing the row of five lever terminals" width="70%">
+</p>
+
+## Features
+
+- **One in, four out, any way round.** Every terminal is the same, so any one can be the input.
+- **17.5 A total** through solid copper planes on both layers, with 16 AWG wire.
+- **Tool-free wiring.** WAGO 2601 lever terminals take 26-16 AWG wire; strip 8-9 mm and push it in.
+- **Long and narrow.** 65.5 x 24 mm, with every wire leaving from the same edge.
+- **Safe to mount with metal hardware.** Four M3 holes with copper kept clear of each.
+- **Five parts, all through-hole.**
+
 ## Ratings
 
 | | |
@@ -27,6 +44,26 @@ The electrical design is in [Stackup KDL](stackup/board.kdl), using the shared
 to it through `distribution-inline.stackup_sch`; sync it with the Stackup KiCad plugin. Run
 `stackup check PCB/distribution-inline/stackup/board.kdl --locked` from the repository root before
 syncing.
+
+## What to buy
+
+The purchasing BOM is [`production/bom/distribution-inline-bom.csv`](production/bom/distribution-inline-bom.csv), exported from
+the Stackup design (`stackup bom PCB/distribution-inline/stackup/board.kdl --locked`).
+
+| Qty | Ref | Part | Manufacturer / MPN | Mouser | DigiKey | LCSC |
+|---|---|---|---|---|---|---|
+| 5 | J1-J5 | Lever terminal, 2-pole, 3.5 mm, horizontal entry | WAGO 2601-1102 | 1089-2601-1102 | 2946-2601-1102-ND | C7509568 |
+| 4 | — | M3 screws and standoffs to mount the board (not on the BOM) | Any; metal is fine, copper is kept clear of the holes | | | |
+
+The 2601-3102 is the vertical, top-entry version of the same block; it is not a substitute.
+
+## Assembly
+
+1. Fit the 5 terminals with their wire entries at the board edge and solder both pins of each pole.
+   The pins carry the full current, so make them full, shiny fillets.
+2. Check continuity between all 5 `+` pins and between all 5 `-` pins, and that `+` and `-` are
+   not shorted.
+3. Wire the supply to any one terminal and the loads to the others, keeping the total within the rating.
 
 ## Hardware overview
 

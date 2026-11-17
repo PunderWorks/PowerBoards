@@ -91,7 +91,6 @@
 		)
 		(capping no)
 		(filling no)
-		(zone_defaults)
 		(pcbplotparams
 			(layerselection 0x00000000_00000000_55555555_5755f5ff)
 			(plot_on_all_layers_selection 0x00000000_00000000_00000000_00000000)
@@ -261,6 +260,28 @@
 				(font
 					(size 1.27 1.27)
 					(thickness 0.15)
+				)
+			)
+		)
+		(property "Mouser" "1089-2601-1102"
+			(at 0 2 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "609d2d01-1229-4705-9e47-5df614bfa9e4")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey" "2946-2601-1102-ND"
+			(at 0 2 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "198dad5c-7402-4022-906e-978328928609")
+			(effects
+				(font
+					(size 1.27 1.27)
 				)
 			)
 		)
@@ -586,6 +607,28 @@
 				)
 			)
 		)
+		(property "Mouser" "1089-2601-1102"
+			(at 0 2 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "3c5cd706-7d2d-4555-8958-3834d5999cc9")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey" "2946-2601-1102-ND"
+			(at 0 2 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "a56f43fa-1ae3-45fa-89ce-be5e4776bcf8")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(path "/c4994a6c-4226-53c4-bcd4-4b662ec8ca5b")
 		(attr through_hole)
 		(duplicate_pad_numbers_are_jumpers no)
@@ -908,6 +951,28 @@
 				)
 			)
 		)
+		(property "Mouser" "1089-2601-1102"
+			(at 0 2 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "20997d63-c053-4628-ad54-81f67ddee092")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey" "2946-2601-1102-ND"
+			(at 0 2 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "3b7fb29c-bd2e-4719-97bd-135d46928f19")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(path "/648f87ba-d9fb-5939-bbde-1d31bdd77b6f")
 		(attr through_hole)
 		(duplicate_pad_numbers_are_jumpers no)
@@ -1227,6 +1292,28 @@
 				(font
 					(size 1.27 1.27)
 					(thickness 0.15)
+				)
+			)
+		)
+		(property "Mouser" "1089-2601-1102"
+			(at 0 -2 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "a4561727-8bb6-4ca2-93d9-4f61aca49ec0")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey" "2946-2601-1102-ND"
+			(at 0 -2 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "b2f68f0d-9316-49c5-8598-24641df9147e")
+			(effects
+				(font
+					(size 1.27 1.27)
 				)
 			)
 		)
@@ -1766,6 +1853,28 @@
 				)
 			)
 		)
+		(property "Mouser" "1089-2601-1102"
+			(at 0 -2 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "44110dac-a81f-4ad2-90a6-7520649b6c27")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey" "2946-2601-1102-ND"
+			(at 0 -2 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "b6d10ae0-8d3b-4399-bbba-00fdc3cd2fa9")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(path "/e1cd847b-7260-5a44-8b25-42554f3e0c02")
 		(attr through_hole)
 		(duplicate_pad_numbers_are_jumpers no)
@@ -2085,6 +2194,28 @@
 				(font
 					(size 1.27 1.27)
 					(thickness 0.15)
+				)
+			)
+		)
+		(property "Mouser" "1089-2601-1102"
+			(at 0 -2 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "b7c150dc-d133-4484-a581-dddad8896856")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey" "2946-2601-1102-ND"
+			(at 0 -2 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "98acf454-9c23-4449-bf81-9f799523fe65")
+			(effects
+				(font
+					(size 1.27 1.27)
 				)
 			)
 		)
