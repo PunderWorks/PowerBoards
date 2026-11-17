@@ -38,6 +38,7 @@ steps and the design decisions behind it. The purchasing BOM for each is in
 | `PCB/<board>/production/` | Fab outputs: `bom/` (the purchasing BOM), `gerbers/`, `jlcpcb/`, `placement/` |
 | [`PCB/libraries/`](PCB/libraries) | KiCad footprints (`PowerBoards.pretty`) and 3D models shared by all boards |
 | [`PCB/datasheets/`](PCB/datasheets) | Manufacturer datasheets for the parts used, shared by all boards |
+| [`scripts/export_production.sh`](scripts/export_production.sh) | Regenerates every board's `production/` files |
 | [`scripts/spice/`](scripts/spice) | ngspice simulations of the power, enable and protection circuits |
 | [`graphics/`](graphics) | Logos and images |
 
@@ -54,6 +55,9 @@ stackup check PCB/<board>/stackup/board.kdl
 
 # Export the purchasing BOM
 stackup bom PCB/<board>/stackup/board.kdl --locked -o <board>-bom.csv
+
+# Regenerate the fab files (BOM, Gerbers, drills, placement, upload zip) for one board or all of them
+scripts/export_production.sh [<board>]
 ```
 
 After `stackup check` passes, open `PCB/<board>/<board>.kicad_pcb` in KiCad and sync it with the Stackup

@@ -43,6 +43,7 @@ PCB/**/*.ses
 PCB/**/*.xml
 PCB/**/*.csv
 !PCB/*/production/bom/*.csv
+!PCB/*/production/placement/*.csv
 
 # Archived Backups (KiCad 6.0)
 PCB/**/*-backups/*.zip

@@ -52,6 +52,21 @@ the Stackup design (`stackup bom PCB/distribution/stackup/board.kdl --locked`).
 
 The 2601-3102 is the vertical, top-entry version of the same block; it is not a substitute.
 
+## Ordering
+
+Fab files are in [`production/`](production/), regenerated with `scripts/export_production.sh distribution`
+from the repository root:
+
+| File | Contents |
+|---|---|
+| [`production/jlcpcb/distribution-gerbers.zip`](production/jlcpcb/distribution-gerbers.zip) | Everything a fab needs to make the bare board: upload this |
+| [`production/gerbers/`](production/gerbers/) | The same files unzipped: Gerbers (X2, Protel extensions), PTH and NPTH Excellon drills, drill maps, job file |
+| [`production/bom/distribution-bom.csv`](production/bom/distribution-bom.csv) | Purchasing BOM with Mouser, DigiKey and LCSC numbers |
+| [`production/placement/distribution-pos.csv`](production/placement/distribution-pos.csv) | Placement file (mm), for an assembler |
+
+Board options: **45.5 x 37 mm, 2 layers, 1.6 mm FR-4, 1 oz copper, blue solder mask, white silkscreen**,
+any surface finish (HASL lead-free is fine). Every feature is far above standard fab minimums. The six terminals are through-hole and quick to hand-solder; JLCPCB can also assemble them (LCSC C7509568).
+
 ## Assembly
 
 1. Fit the 6 terminals with their wire entries at the board edge and solder both pins of each pole.
