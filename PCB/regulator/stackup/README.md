@@ -1,9 +1,7 @@
 # Regulator board Stackup design
 
-`board.kdl` defines the electrical design and imports parts from the library
-pinned in the repository's `manifest.kdl`. `parts.kdl` defines any parts
-specific to this board. `purchasing.kdl` declares the selected manufacturer
-parts and supplier numbers.
+`board.kdl` defines the electrical design. Its parts, with their manufacturer part numbers and
+datasheet notes, go in the shared [`../../libraries/stackup/parts.kdl`](../../libraries/stackup/parts.kdl).
 
 The board layout is in `../regulator.kicad_pcb`. To check the design, run
 `stackup check PCB/regulator/stackup/board.kdl` from the repository root. To update the

@@ -1,0 +1,4 @@
+Refs,Quantity,Value,Footprint,MF,MPN,LCSC,Mouser,DigiKey,Hand,DNP
+"C1","1","100µF 63V radial 8x11.5mm","Capacitor_THT:CP_Radial_D8.0mm_P3.50mm","Rubycon","63ZLJ100M8X11.5","C694359","232-63ZLJ100M8X11.5","1189-63ZLJ100M8X11.5-ND","",""
+"J6","1","Pololu D42V55Fx socket","Connector_PinSocket_2.54mm:PinSocket_2x06_P2.54mm_Vertical","Samtec","SSW-106-01-T-D","C3323806","200-SSW10601TD","612-SSW-106-01-T-D-ND","",""
+"J1,J2,J3,J4,J5","5","WAGO 2601-1102","PowerBoards:WAGO_2601-1102_Horizontal","WAGO","2601-1102","C7509568","1089-2601-1102","2946-2601-1102-ND","",""

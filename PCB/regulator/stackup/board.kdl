@@ -1,0 +1,37 @@
+// Regulator board: a power distribution board with a plug-in Pololu D42V55Fx step-down module.
+// J_IN feeds the module's VIN; the module's output feeds a VOUT plane shared by J_OUT1-J_OUT4, over
+// a GND plane. The output voltage is the module variant plugged in (D42V55F5 = 5 V, D42V55F12 =
+// 12 V); see PCB/libraries/stackup/parts.kdl.
+//
+// - Input: 24 V batteries peaking at about 32 V, or 12 V systems with the 5 V module. The module
+//   takes 60 V; the minimum is VOUT plus its dropout.
+// - C_IN damps the ringing when a battery is plugged in (scripts/spice/regulator_hotplug_sim.py).
+//   It sits on VRP, the module's input after its reverse-voltage protection, so a reversed battery
+//   never reverse-biases it.
+// - J_OUT1-J_OUT4 share the module's output current: the board is rated 6 A at 5 V (two VOUT pins
+//   at 3 A each) and 5 A at 12 V (module thermal limit, derated for an enclosure).
+//
+// The board's M3 mounting holes are board-only footprints in the KiCad layout, not parts here.
+use "../../libraries/stackup/parts.kdl"
+
+design regulator {
+    place wago-2601-1102 "J_IN" note="Battery input, to the regulator"
+    place wago-2601-1102 "J_OUT1" note="Regulated output"
+    place wago-2601-1102 "J_OUT2" note="Regulated output"
+    place wago-2601-1102 "J_OUT3" note="Regulated output"
+    place wago-2601-1102 "J_OUT4" note="Regulated output"
+
+    place d42v55fx-socket "J_REG" note="Plug in a Pololu D42V55F5 (5 V) or D42V55F12 (12 V)"
+    place cap-63zlj100 "C_IN" note="Input bulk on VRP: damps hot-plug ringing"
+
+    circuit "J_IN.1" "J_REG.VIN_A" "J_REG.VIN_B" name="VIN"
+    set "J_REG.VIN_A" net.voltage min="9V" max="32V"
+    circuit "J_REG.VRP_A" "J_REG.VRP_B" "C_IN.POS" name="VRP"
+
+    circuit "J_REG.VOUT_A" "J_REG.VOUT_B" "J_OUT1.1" "J_OUT2.1" "J_OUT3.1" "J_OUT4.1" name="VOUT"
+
+    circuit "J_IN.2" "J_OUT1.2" "J_OUT2.2" "J_OUT3.2" "J_OUT4.2" "J_REG.GND_A" "J_REG.GND_B" "J_REG.GND_C" "J_REG.GND_D" "C_IN.NEG" name="GND"
+
+    nc "J_REG.EN" note="Module pulls EN up to VIN through 1 MΩ: always on"
+    nc "J_REG.PG" note="Power-good output, not used"
+}

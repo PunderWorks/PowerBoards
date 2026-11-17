@@ -1,0 +1,126 @@
+// Parts shared by the PowerBoards designs. Datasheets are in PCB/datasheets/ unless a part's
+// comment says its datasheet could not be fetched.
+
+// WAGO 2601-1102 PCB terminal block: lever-actuated Push-in CAGE CLAMP, 2-pole, 3.5 mm pitch,
+// wire entry parallel to the PCB (conductor connection direction to PCB 0°). The 2601-3102 is the
+// vertical, top-entry version and is not a substitute.
+//
+// Datasheet: WAGO 2601-1102 data sheet, version 25.01.2023 (PCB/datasheets/WAGO_2601-1102.pdf).
+// - Conductors: 0.14-1.5 mm² / 26-16 AWG solid, 0.2-1.5 mm² / 24-16 AWG fine-stranded; strip
+//   8-9 mm (p. 2).
+// - Rated current 17.5 A per IEC/EN 60664-1; 10 A per UL 1059 and CSA, Use Groups B and D (p. 2).
+// - Two solder pins per pole, in two rows 5 mm apart; 1.2 (+0.1) mm drilled hole (p. 1, p. 3).
+// WAGO does not number the poles. Pin 1 is the left pole seen from the wire-entry face, as in
+// KiCad's footprint, whose pad numbers each cover both solder pins of a pole.
+// The footprint is a copy of KiCad's TerminalBlock_WAGO_2601-1102_1x02_P3.50mm_Horizontal in
+// PCB/libraries/PowerBoards.pretty. The only change is that it points at WAGO's 3D model, because
+// KiCad ships none (see PCB/libraries/3dmodels/README.md).
+part wago-2601-1102 {
+    symbol "Connector:Screw_Terminal_01x02"
+    reference J
+    value "WAGO 2601-1102"
+    description "WAGO 2601 PCB terminal block, lever, Push-in CAGE CLAMP, 2-pole, 3.5 mm pitch, 1.5 mm² / 26-16 AWG, wire entry parallel to PCB, gray"
+    datasheet "https://www.wago.com/2601-1102"
+    manufacturer WAGO
+
+    pin 1 passive
+    pin 2 passive
+
+    package horizontal footprint="PowerBoards:WAGO_2601-1102_Horizontal" {
+        order mpn="2601-1102" lcsc=C7509568 mouser="1089-2601-1102" digikey="2946-2601-1102-ND"
+        pad 1 1
+        pad 2 2
+    }
+}
+
+// Socket for a Pololu D42V55Fx step-down regulator module: Samtec SSW-106-01-T-D, 2x6 female
+// header, 2.54 mm pitch, through-hole, vertical. The module plugs in on its own male headers
+// (supplied with it), so the module itself is not a PCB part; buy it separately in the variant
+// for the output wanted (D42V55F5 = 5 V, D42V55F12 = 12 V; the D42V55F6 6 V and other variants
+// share the footprint). The D36V50Fx family has the same pin order and should also fit (from
+// Pololu's pinout photos only).
+//
+// Module (PCB/datasheets/Pololu_D42V55F5.html, Pololu_D42V55F12.html, "Connections"):
+// - VIN 3.5-60 V; the effective minimum is VOUT plus dropout. Input reverse-voltage protection
+//   (no limit published). VRP is the input after that protection.
+// - EN pulled up to VIN through 1 MΩ on the module (on by default); left unconnected here.
+//   PG is an open-drain power-good output; left unconnected here.
+// - Pins on a 0.1" grid in two rows of six: EN/PG, VRP, VIN, GND, GND, VOUT. The power pins are
+//   duplicated across both rows; EN is on the edge row, PG on the inner row (pinout image
+//   0J13518 on the product page). Pololu rates each header pin at 3 A, 6 A per pair.
+// - Dimension drawing (PCB/datasheets/POLOLU_D42V55Fx_dimensions.pdf, 18 June 2025): 25.4 mm
+//   square; edge row 1.27 mm and inner row 3.81 mm from the module edge, positions centered 6.35 mm
+//   from each end; three Ø2.18 mm M2 holes 2.2 mm from the edges, 21.1 mm apart.
+// Socket (PCB/datasheets/Samtec_SSW.pdf): 4.7 A per pin (2 pins powered); mates with 0.025"
+// square posts, 3.68-6.35 mm insertion depth; insulator 8.51 mm tall; double row, matte tin. Second source: Sullins PPTC062LFBN-RC (rating not
+// checked against its datasheet).
+//
+// Pads follow KiCad's PinSocket_2x06 numbering: odd pads (1-11) are the module's edge row
+// (EN side), even pads (2-12) the inner row (PG side); pads 1-2 are the EN/PG end. The module
+// body extends past the even-pad row.
+part d42v55fx-socket {
+    symbol "Connector_Generic:Conn_02x06_Odd_Even"
+    reference J
+    value "Pololu D42V55Fx socket"
+    description "Socket for Pololu D42V55Fx regulator: female header, 2x6, 2.54 mm, through-hole, vertical, 4.7 A/pin"
+    datasheet "https://suddendocs.samtec.com/catalog_english/ssw_th.pdf"
+    manufacturer Samtec
+
+    pin EN input
+    pin PG passive
+    pin VRP_A passive
+    pin VRP_B passive
+    pin VIN_A power_in
+    pin VIN_B power_in
+    pin GND_A power_in
+    pin GND_B power_in
+    pin GND_C power_in
+    pin GND_D power_in
+    pin VOUT_A power_out
+    pin VOUT_B power_out
+
+    package vertical footprint="Connector_PinSocket_2.54mm:PinSocket_2x06_P2.54mm_Vertical" {
+        order mpn="SSW-106-01-T-D" lcsc=C3323806 mouser="200-SSW10601TD" digikey="612-SSW-106-01-T-D-ND"
+        pad EN 1
+        pad PG 2
+        pad VRP_A 3
+        pad VRP_B 4
+        pad VIN_A 5
+        pad VIN_B 6
+        pad GND_A 7
+        pad GND_B 8
+        pad GND_C 9
+        pad GND_D 10
+        pad VOUT_A 11
+        pad VOUT_B 12
+    }
+
+    port vin type=power {
+        require net.voltage max="60V"
+        line rail pin=VIN_A
+        line gnd pin=GND_A
+    }
+}
+
+// Rubycon 63ZLJ100M8X11.5: 100 µF 63 V aluminium electrolytic, low impedance, 105 °C, φ8 x 11.5 mm,
+// 3.5 mm lead spacing. Datasheet: Rubycon ZLJ (PCB/datasheets/Rubycon_ZLJ.pdf): 63 V 100 µF
+// 8x11.5 row, ripple 1000 mA rms (105 °C, 100 kHz), impedance 0.13 Ω max (20 °C, 100 kHz),
+// 0.39 Ω max (-10 °C) (p. 3); lead spacing F = 3.5 mm for φ8 (p. 2). Pad 1 is positive in KiCad's
+// CP_Radial footprints. A substitute must be φ8 with 3.5 mm spacing (φ10 cans have 5 mm spacing).
+part cap-63zlj100 {
+    symbol "Device:C_Polarized"
+    reference C
+    value "100µF 63V radial 8x11.5mm"
+    description "Aluminium electrolytic, 100 µF, 63 V, 20%, low impedance, 105 °C, radial φ8 x 11.5 mm, P3.5 mm"
+    datasheet "https://www.rubycon.co.jp/en/catalog/e_pdfs/aluminum/e_ZLJ.pdf"
+    manufacturer Rubycon
+
+    pin POS passive
+    pin NEG passive
+
+    package radial8 footprint="Capacitor_THT:CP_Radial_D8.0mm_P3.50mm" {
+        order mpn="63ZLJ100M8X11.5" lcsc=C694359 mouser="232-63ZLJ100M8X11.5" digikey="1189-63ZLJ100M8X11.5-ND"
+        pad POS 1
+        pad NEG 2
+    }
+}

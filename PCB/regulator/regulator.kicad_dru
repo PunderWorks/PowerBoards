@@ -1,0 +1,9 @@
+(version 1)
+
+# H5 is a module standoff hole, fixed by Pololu's D42V55Fx drawing 2.2 mm from the pin edge. Its
+# courtyard is the Bivar 9913-437 round nylon spacer (4.76 mm OD). The spacer clears the Samtec
+# SSW-106-01-T-D body by 0.24 mm (body 15.75 mm long), but sits inside the socket courtyard's 0.5 mm
+# margin, so the two courtyards may touch.
+(rule "Module standoff H5 beside the socket J6"
+	(condition "(A.Reference == 'H5' && B.Reference == 'J6') || (A.Reference == 'J6' && B.Reference == 'H5')")
+	(constraint courtyard_clearance (min -0.2mm)))
